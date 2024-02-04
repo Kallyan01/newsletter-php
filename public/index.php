@@ -1,5 +1,5 @@
 <?php
-include '../formSubmission.php';
+include '../verifyOtp.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,6 +14,15 @@ include '../formSubmission.php';
         <input type="text" name="name" id="">
         <label for="email">Email Id</label>
         <input type="text" name="email" id="">
+        <input type="submit" value="Submit">
+    </form>
+
+    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+        
+        <label for="email">Email Id</label>
+        <input type="text" name="email" id="">
+        <label for="otp">OTP</label>
+        <input type="number" name="otp" id="">
         <input type="submit" value="Submit">
     </form>
 </body>

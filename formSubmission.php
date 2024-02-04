@@ -16,12 +16,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // SQL injection prevention
     $email = $conn->real_escape_string($email);
     $name = $conn->real_escape_string($name);
-
+    $otp = random_int(100000, 999999);
+    echo $otp;
     // Insert data into database
-    $sql = "INSERT INTO users (email, name) VALUES ('$email', '$name')";
+    $sql = "INSERT INTO verification (email, name , otp) VALUES ('$email', '$name' ,'$otp')";
+    
+
+
 
     if ($conn->query($sql) === TRUE) {
-        echo "New record created successfully";
+        $subject = "OTP Verification ";
+        $message = "Please Enter $otp to verify you subscription ";
+        $headers = "From: verification@github.com";
+        
+        // Loop through each user and send email
+       
+            $to = $email;
+            // Send email
+            if (mail($to, $subject, $message, $headers)) {
+                echo "OTP successfully Send";
+            } else {
+                echo "Failed to send email to: " . $to . "<br>";
+            }
+        
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
