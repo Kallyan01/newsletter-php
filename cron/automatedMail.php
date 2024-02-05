@@ -1,7 +1,6 @@
 <?php
 
-
-$conn = new mysqli('localhost', 'root' , 'root' , 'local');
+$conn = new mysqli('localhost', 'root', 'root', 'local');
 
 // Check connection
 if ($conn->connect_error) {
@@ -45,4 +44,3 @@ if ($result->num_rows > 0) {
 
 // Close database connection
 $conn->close();
-?>

@@ -1,15 +1,20 @@
 <?php
 
+namespace Subscription;
+
 require '../config/database.php';
 
-class OTPVerification {
+class OTPVerification
+{
     private $conn;
 
-    public function __construct($conn) {
+    public function __construct($conn)
+    {
         $this->conn = $conn;
     }
 
-    public function sendVerificationEmail($email, $name) {
+    public function sendVerificationEmail($email, $name)
+    {
         // Validate email
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             die("Invalid email format");
@@ -23,7 +28,7 @@ class OTPVerification {
         // Insert data into database
         $sql = "INSERT INTO verification (email, name, otp) VALUES ('$email', '$name', '$otp')";
 
-        if ($this->conn->query($sql) === TRUE) {
+        if ($this->conn->query($sql) === true) {
             $subject = "OTP Verification";
             $message = "Please Enter $otp to verify your subscription";
             $headers = "From: verification@github.com";
@@ -54,10 +59,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 // Function to clean input data
-function clean_input($data) {
+function clean_input($data)
+{
     $data = trim($data);
     $data = stripslashes($data);
     $data = htmlspecialchars($data);
     return $data;
 }
-?>

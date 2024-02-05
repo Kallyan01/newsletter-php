@@ -1,14 +1,20 @@
 <?php
+
+namespace Verification ;
+
 include "../config/database.php";
 
-class OTPVerifier {
+class OTPVerifier
+{
     private $conn;
 
-    public function __construct($conn) {
+    public function __construct($conn)
+    {
         $this->conn = $conn;
     }
 
-    public function verifyOTP($email, $user_otp, $user_action) {
+    public function verifyOTP($email, $user_otp, $user_action)
+    {
         // Verify OTP
         $sql = "SELECT * FROM verification WHERE email = ? AND otp = ?";
         $stmt = $this->conn->prepare($sql);
@@ -69,4 +75,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Call the verifyOTP method
     $otpVerifier->verifyOTP($email, $user_otp, $user_action);
 }
-?>

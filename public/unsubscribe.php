@@ -1,14 +1,20 @@
 <?php
+
+namespace Unsubscribe;
+
 include "../config/database.php";
 
-class OTPHandler {
+class OTPHandler
+{
     private $conn;
 
-    public function __construct($conn) {
+    public function __construct($conn)
+    {
         $this->conn = $conn;
     }
 
-    public function generateAndSendOTP($email) {
+    public function generateAndSendOTP($email)
+    {
         // Clean and validate email input
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             die("Invalid email format");
@@ -31,7 +37,7 @@ class OTPHandler {
             $message = "Please Enter $otp to verify you subscription ";
             $headers = "From: verification@github.com";
             $to = $email;
-            if ($this->conn->query($sqlInsertOTP) === TRUE && mail($to, $subject, $message, $headers)) {
+            if ($this->conn->query($sqlInsertOTP) === true && mail($to, $subject, $message, $headers)) {
                 echo "OTP sent successfully!";
                 header("Location: verifyOtpForm.php?action=unsubscribe&email={$email}");
             } else {
@@ -49,8 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
     // Create an instance of OTPHandler
     $otpHandler = new OTPHandler($conn);
-    
+
     // Call the generateAndSendOTP method
     $otpHandler->generateAndSendOTP($email);
 }
-?>
