@@ -9,6 +9,5 @@
 </head>
 <body>
 <?php require 'verifyOtpForm.php' ?>
-
 </body>
 </html>

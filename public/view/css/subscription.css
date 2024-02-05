@@ -1,0 +1,151 @@
+*
+{
+    margin: 0;
+    padding: 0;
+}
+
+body
+{
+   
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    background-color:   #19181F  ;
+}
+
+.center-card
+{
+color: white;
+text-align: center;
+display: flex;
+flex-direction: column;
+padding: 5rem;
+
+
+}
+
+.center-card  h2
+{
+    font-weight: 300;
+    font-size: 5rem;
+}
+
+.center-card  h5
+{
+    font-weight: 200;
+    font-size: 2rem;
+}
+
+.form-section
+{
+   
+    padding: 1rem;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+.subscribe-form
+{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.sub-btn
+{
+    margin: .5rem 0;
+    padding: 1.5rem .9rem;
+    background-color: var(--red-800-opaque-30);
+    border: .1rem solid var(--red-900);
+    color: var(--red-900);
+    outline: none;
+    font-size: 2rem;
+    border-radius: .5rem;
+    cursor: pointer;
+    width: 100%;
+}
+
+.sub-btn:hover
+{
+    background-color: var(--red-800-opaque-20);
+    transform: all 1s ease-in-out;
+}
+
+.subscribe-form > input
+{
+    margin: .5rem 0;
+    padding: 1.5rem .9rem;
+background-color: var(--github-black);
+border: .1rem solid var(--white-opaque);
+outline: none;
+border-radius: .3rem;
+color: var(--white);
+font-size: 1.7rem;
+font-weight: 300;
+width: 100%;
+}
+
+
+@media only screen and (max-width: 480px) {
+
+
+    .center-card  h2
+{
+    font-weight: 300;
+    font-size: 4rem;
+}
+
+.center-card  h5
+{
+    font-weight: 200;
+    font-size: 1rem;
+}
+.sub-btn
+{
+    margin: .2rem 0;
+    padding: 1rem .9rem;
+    background-color: var(--red-800-opaque-30);
+    border: .1rem solid var(--red-900);
+    color: var(--red-900);
+    outline: none;
+    font-size: 1.5rem;
+    border-radius: .5rem;
+    cursor: pointer;
+    width: 100%;
+    height: 2rem;
+}
+
+.sub-btn:hover
+{
+    background-color: var(--red-800-opaque-20);
+    transform: all 1s ease-in-out;
+}
+
+.subscribe-form > input
+{
+    margin: .2rem 0;
+    padding: 1rem .9rem;
+background-color: var(--github-black);
+border: .1rem solid var(--white-opaque);
+outline: none;
+border-radius: .3rem;
+color: var(--gray);
+font-size: 1.2rem;
+font-weight: 300;
+width: 100%;
+height: 2rem;
+}
+
+
+
+
+}
+
