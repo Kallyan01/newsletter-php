@@ -2,12 +2,13 @@
 
 <?php
 
-include "config/database.php";
+require '../config/database.php';
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = clean_input($_POST["email"]);
     $name = clean_input($_POST["name"]);
-
+     echo "hi";
     // Validate email
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         die("Invalid email format");
@@ -35,6 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Send email
             if (mail($to, $subject, $message, $headers)) {
                 echo "OTP successfully Send";
+                header("Location: verifyOtpForm.php");
             } else {
                 echo "Failed to send email to: " . $to . "<br>";
             }

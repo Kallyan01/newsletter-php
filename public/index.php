@@ -1,6 +1,4 @@
-<?php
-include '../verifyOtp.php';
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,21 +7,13 @@ include '../verifyOtp.php';
     <title>Document</title>
 </head>
 <body>
-<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+<form method="POST" action="subscriptionForm.php">
         <label for="name">Full Name</label>
         <input type="text" name="name" id="">
         <label for="email">Email Id</label>
         <input type="text" name="email" id="">
-        <input type="submit" value="Submit">
-    </form>
-
-    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-        
-        <label for="email">Email Id</label>
-        <input type="text" name="email" id="">
-        <label for="otp">OTP</label>
-        <input type="number" name="otp" id="">
-        <input type="submit" value="Submit">
-    </form>
+        <input type="submit" value="Submit" name="submit">
+</form>
+    
 </body>
 </html>

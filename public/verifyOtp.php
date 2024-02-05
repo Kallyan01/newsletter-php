@@ -1,15 +1,25 @@
 <?php
-include "config/database.php";
+include "../config/database.php";
 // Assume $user_otp is the OTP entered by the user
-$user_otp = $_POST['otp'];
 
-// Assume $email is the email for which OTP is generated
-$email = $_POST['email'];
 
-// Verify OTP
-$sql = "SELECT * FROM verification WHERE email = '$email' AND otp = '$user_otp'";
 
-$result = $conn->query($sql);
+  
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") 
+{
+    $user_otp = $_POST['otp'];
+
+    $email = $_POST['email'];
+ 
+ 
+ 
+ // Verify OTP
+ $sql = "SELECT * FROM verification WHERE email = '$email' AND otp = '$user_otp'";
+
+
+    $result = $conn->query($sql);
+
 
 if ($result->num_rows > 0) {
     // OTP is valid, fetch user data
@@ -26,7 +36,7 @@ if ($result->num_rows > 0) {
     }
 
     // Optionally, you may want to delete the OTP entry from otp_table
-    $delete_sql = "DELETE FROM otp_table WHERE email = '$email'";
+    $delete_sql = "DELETE FROM verification WHERE email = '$email'";
     $conn->query($delete_sql);
 } else {
     // OTP is invalid
@@ -35,4 +45,5 @@ if ($result->num_rows > 0) {
 
 // Close database connection
 $conn->close();
+}
 ?>
