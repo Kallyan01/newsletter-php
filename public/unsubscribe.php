@@ -2,7 +2,7 @@
 
 namespace Unsubscribe;
 
-include "../config/database.php";
+require "../config/database.php";
 
 class OTPHandler
 {
@@ -50,7 +50,7 @@ class OTPHandler
 }
 
 // Usage
-if ($_SERVER["REQUEST_METHOD"] == "GET") {
+if ($_SERVER["REQUEST_METHOD"] == "GET" && !empty($_GET["email"])) {
     $email = $_GET["email"];
 
     // Create an instance of OTPHandler
