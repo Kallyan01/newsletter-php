@@ -1,5 +1,6 @@
 <?php
 include "../config/database.php";
+
 // Assume $user_otp is the OTP entered by the user
 
 
@@ -9,7 +10,7 @@ include "../config/database.php";
 if ($_SERVER["REQUEST_METHOD"] == "POST") 
 {
     $user_otp = $_POST['otp'];
-
+    $user_action = $_POST['action'];
     $email = $_POST['email'];
  
  
@@ -26,17 +27,29 @@ if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
     $name = $row['name'];
     $email = $row['email'];
+  if($user_action==="subscribe")
+  {
 
-    // Insert user data into users table
-    $insert_sql = "INSERT INTO users (name, email) VALUES ('$name', '$email')";
-    if ($conn->query($insert_sql) === TRUE) {
-        echo "User data inserted successfully!";
-    } else {
-        echo "Error inserting user data: " . $conn->error;
+      // Insert user data into users table
+      $insert_sql = "INSERT INTO users (name, email) VALUES ('$name', '$email')";
+      if ($conn->query($insert_sql) === TRUE) {
+          echo "User data inserted successfully!";
+        } else {
+            echo "Error inserting user data: " . $conn->error;
+        }
+    }
+    else {
+         // Insert user data into users table
+      $insert_sql = "DELETE FROM users WHERE email = '$email'";
+      if ($conn->query($insert_sql) === TRUE) {
+          echo "User deleted successfully!";
+        } else {
+            echo "Error inserting user data: " . $conn->error;
+        }
     }
 
     // Optionally, you may want to delete the OTP entry from otp_table
-    $delete_sql = "DELETE FROM verification WHERE email = '$email'";
+    $delete_sql = "DELETE FROM verification WHERE email='$email' ";
     $conn->query($delete_sql);
 } else {
     // OTP is invalid

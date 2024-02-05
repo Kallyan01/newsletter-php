@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Send email
             if (mail($to, $subject, $message, $headers)) {
                 echo "OTP successfully Send";
-                header("Location: verifyOtpForm.php");
+                header("Location: verifyOtpForm.php?action=subscribe&email={$email}");
             } else {
                 echo "Failed to send email to: " . $to . "<br>";
             }
