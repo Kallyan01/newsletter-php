@@ -35,3 +35,24 @@ To fulfill the assignment's requirements, the PHP application must meet the foll
 - Adhere to PHP clean code concepts, ensuring code readability, maintainability, and modularity.
 
 By meeting these requirements, the PHP application will effectively address the problem statement and provide a robust solution for sending GitHub timeline updates to subscribed users.
+
+## Local Setup
+
+### Generate SQL Table from these query
+```sql
+CREATE TABLE users (
+    id INT(11) AUTO_INCREMENT,
+    email VARCHAR(255),
+    name VARCHAR(255),
+    PRIMARY KEY (id)
+);
+```
+
+```sql
+CREATE TABLE users (
+    email VARCHAR(255),
+    name VARCHAR(255),
+    otp VARCHAR(6),
+    created_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP
+);
+```

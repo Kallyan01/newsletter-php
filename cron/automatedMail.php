@@ -58,7 +58,6 @@ if ($result->num_rows > 0) {
         $message .= '<div class="entry">';
         $message .= '<h2>Title: ' . $title . '</h2>';
         $message .= '<p>Author: ' . $author_name . '</p>';
-        $message .= '<p>Media URL: <a href="' . $media_url . '">' . $media_url . '</a></p>';
         $message .= '</div>';
     }
     

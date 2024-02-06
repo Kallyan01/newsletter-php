@@ -34,7 +34,7 @@ class OTPHandler
             // Insert OTP data into the verification table
             $sqlInsertOTP = "INSERT INTO verification (email, name, otp) VALUES ('$email', '', '$otp')";
             $subject = "OTP Verification for unsubscribe";
-            $message = "Please Enter $otp to verify you subscription ";
+            $message = "Please Enter $otp to verify you to opt out ";
             $headers = "From: verification@github.com";
             $to = $email;
             if ($this->conn->query($sqlInsertOTP) === true && mail($to, $subject, $message, $headers)) {
