@@ -1,55 +1,9 @@
-*
+#otp_email , #otp_action
 {
-    margin: 0;
-    padding: 0;
+    display: none;
 }
 
-
-
-.center-card
-{
-color: white;
-text-align: center;
-display: flex;
-flex-direction: column;
-padding: 5rem;
-
-
-}
-
-.center-card  h2
-{
-    font-weight: 300;
-    font-size: 5rem;
-}
-
-.center-card  h5
-{
-    font-weight: 200;
-    font-size: 2rem;
-}
-
-.form-section
-{
-
-    padding: 1rem;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-}
-.subscribe-form
-{
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-
-    justify-content: center;
-    align-items: center;
-
-}
-
-.sub-btn
+.otp_submit
 {
     margin: .5rem 0;
     padding: 1.5rem .9rem;
@@ -63,13 +17,13 @@ padding: 5rem;
     width: 100%;
 }
 
-.sub-btn:hover
+.otp_submit:hover
 {
     background-color: var(--red-800-opaque-20);
     transform: all 1s ease-in-out;
 }
 
-.subscribe-form > input
+#otp_value
 {
     margin: .5rem 0;
     padding: 1.5rem .9rem;
@@ -86,19 +40,7 @@ width: 100%;
 
 @media only screen and (max-width: 480px) {
 
-
-    .center-card  h2
-{
-    font-weight: 300;
-    font-size: 4rem;
-}
-
-.center-card  h5
-{
-    font-weight: 200;
-    font-size: 1rem;
-}
-.sub-btn
+.otp_submit
 {
     margin: .2rem 0;
     padding: 1rem .9rem;
@@ -113,13 +55,13 @@ width: 100%;
     height: 2rem;
 }
 
-.sub-btn:hover
+.otp_submit:hover
 {
     background-color: var(--red-800-opaque-20);
     transform: all 1s ease-in-out;
 }
 
-.subscribe-form > input
+#otp_value
 {
     margin: .2rem 0;
     padding: 1rem .9rem;
