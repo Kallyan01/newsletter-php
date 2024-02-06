@@ -38,6 +38,19 @@ width: 100%;
 }
 
 
+.card
+{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    color: white;
+}
+
+.card p
+{
+    font-size: 5rem;
+}
+
 @media only screen and (max-width: 480px) {
 
 .otp_submit

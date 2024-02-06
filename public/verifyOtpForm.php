@@ -11,10 +11,11 @@
 </head>
 <body>
 
+<div class="card">
 
-
-<form method="POST" action="verifyOtp.php" class="otp_form">
-
+    <p>Please Verify Your Otp</p>
+    <form method="POST" action="verifyOtp.php" class="otp_form">
+        
         <input type="text" name="action" id="otp_action" value="<?php if(!empty($_GET['action'])) echo $_GET["action"]; ?>">
         
         <input type="text" name="email" id="otp_email" value="<?php if(!empty($_GET['email'])) echo $_GET["email"]; ?>">
@@ -22,6 +23,7 @@
         <input type="number" name="otp" id="otp_value" required placeholder="Enter Your Otp">
         <input type="submit" value="Submit" name="submit" class="otp_submit">
     </form>
-
-    </body>
+</div>
+    
+</body>
 </html>

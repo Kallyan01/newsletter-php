@@ -12,6 +12,35 @@ if ($conn->connect_error) {
 $sql = "SELECT email FROM users";
 $result = $conn->query($sql);
 
+
+function getFullUrl() {
+    // Check if HTTPS is set to "on" to determine the protocol
+    $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https://' : 'http://';
+
+    // Get the server name from SERVER_NAME
+    $server_name = $_SERVER['SERVER_NAME'];
+
+    // Get the port number from SERVER_PORT
+    $port = $_SERVER['SERVER_PORT'];
+
+    // Check if the port is not the default port for the protocol
+    if (($protocol === 'http://' && $port != 80) || ($protocol === 'https://' && $port != 443)) {
+        $port = ':' . $port; // Include the port in the URL
+    } else {
+        $port = ''; // No need to include the port if it's the default port
+    }
+
+    // Get the requested URI from REQUEST_URI
+    $request_uri = $_SERVER['REQUEST_URI'];
+
+    // Combine all the components to form the full URL
+    $full_url = $protocol . $server_name . $port . $request_uri;
+
+    // Return the full URL
+    return $full_url;
+}
+$fullUrl = getFullUrl();
+
 // Initialize arrays to store successful and error email recipients
 $successRecipients = [];
 $errorRecipients = [];
@@ -64,7 +93,7 @@ if ($result->num_rows > 0) {
     // Add unsubscribe link
     while ($row = $result->fetch_assoc()) {
         $to = $row["email"];
-        $unsubscribe_link = 'http://demo.local/unsubscribe.php?email=' . urlencode($to);
+        $unsubscribe_link = "http://demo.local/unsubscribe.php?email=" . urlencode($to);
         $message .= '<p>To unsubscribe, click <a href="' . $unsubscribe_link . '">here</a>.</p>';
     }
     
