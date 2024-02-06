@@ -1,4 +1,4 @@
-<?php require 'formSubmission.php' ?>
+<?php require 'formSubmission.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -8,6 +8,6 @@
     <title>Document</title>
 </head>
 <body>
-<?php require 'verifyOtpForm.php' ?>
+<?php require 'verifyOtpForm.php'; ?>
 </body>
 </html>

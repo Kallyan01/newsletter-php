@@ -1,6 +1,6 @@
 <?php
 
-include "../public/wp-config.php";
+require "../public/wp-config.php";
 
 $conn = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 

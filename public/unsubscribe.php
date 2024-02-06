@@ -50,7 +50,7 @@ class OTPHandler
 }
 
 // Usage
-if ($_SERVER["REQUEST_METHOD"] == "GET" && !empty($_GET["email"])) {
+if ( !empty($_GET["email"])) {
     $email = $_GET["email"];
 
     // Create an instance of OTPHandler

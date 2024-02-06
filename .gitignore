@@ -1,1 +1,3 @@
 public/wp-config.php
+cron/email_log.txt
+sql

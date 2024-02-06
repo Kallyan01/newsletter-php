@@ -63,7 +63,7 @@ class OTPVerifier
 }
 
 // Usage
-if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST['otp']) && !empty($_POST['email']) && !empty($_POST['action']) ) {
+if ( !empty($_POST['otp']) && !empty($_POST['email']) && !empty($_POST['action']) ) {
     // Retrieve input data
     $user_otp = $_POST['otp'];
     $user_action = $_POST['action'];
