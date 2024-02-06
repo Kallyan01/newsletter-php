@@ -44,7 +44,7 @@ class OTPHandler
                 echo "Error inserting OTP: " . $this->conn->error;
             }
         } else {
-            echo "User does not exist";
+            header("Location: /view/serverError.html");
         }
     }
 }
