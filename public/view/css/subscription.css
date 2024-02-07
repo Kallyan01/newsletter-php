@@ -17,6 +17,19 @@ padding: 5rem;
 
 }
 
+a{
+    color: var(--github-black);
+    text-decoration: none;
+  }
+  .lego-btn{
+    background: var(--white);
+    border-radius: 4px;
+    color: var(--github-black);
+    display: inline-block;
+    margin-top: 30px;
+    font-size: 2rem;
+    padding: 12px 35px;
+  }
 .center-card  h2
 {
     font-weight: 300;

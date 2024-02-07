@@ -44,7 +44,7 @@ class OTPHandler
                 echo "Error inserting OTP: " . $this->conn->error;
             }
         } else {
-            header("Location: /view/serverError.html");
+            header("Location: /view/clientError.html");
         }
     }
 }

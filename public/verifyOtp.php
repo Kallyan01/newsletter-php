@@ -34,9 +34,9 @@ class OTPVerifier
                 $stmt = $this->conn->prepare($insert_sql);
                 $stmt->bind_param("ss", $name, $email);
                 if ($stmt->execute()) {
-                    echo "User data inserted successfully!";
+                    header("Location: /view/subscribed.html");
                 } else {
-                    echo "Error inserting user data: " . $this->conn->error;
+                    header("Location: /view/serverError.html");
                 }
             } else {
                 // Delete user data from users table
@@ -44,9 +44,9 @@ class OTPVerifier
                 $stmt = $this->conn->prepare($delete_sql);
                 $stmt->bind_param("s", $email);
                 if ($stmt->execute()) {
-                    echo "User deleted successfully!";
+                    header("Location: /view/unsubscribed.html");
                 } else {
-                    echo "Error deleting user data: " . $this->conn->error;
+                    header("Location: /view/serverError.html");
                 }
             }
 
