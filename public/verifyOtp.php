@@ -44,7 +44,7 @@ class OTPVerifier
                 $stmt = $this->conn->prepare($delete_sql);
                 $stmt->bind_param("s", $email);
                 if ($stmt->execute()) {
-                    header("Location: /view/unsubscribed.html");
+                    header("Location: /view/unsubscribe.html");
                 } else {
                     header("Location: /view/serverError.html");
                 }
