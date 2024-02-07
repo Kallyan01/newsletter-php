@@ -93,7 +93,7 @@ if ($result->num_rows > 0) {
     // Add unsubscribe link
     while ($row = $result->fetch_assoc()) {
         $to = $row["email"];
-        $unsubscribe_link = "http://demo.local/unsubscribe.php?email=" . urlencode($to);
+        $unsubscribe_link = "http://demo.local/unsubscribe.php?email=" . rawurlencode($to);
         $message .= '<p>To unsubscribe, click <a href="' . $unsubscribe_link . '">here</a>.</p>';
     }
     
