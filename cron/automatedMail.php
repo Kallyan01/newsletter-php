@@ -48,7 +48,8 @@ if ($result->num_rows > 0) {
     <body>';
     
     // Fetch and parse the XML content
-    $xml_data = file_get_contents('https://github.com/timeline');
+    // $xml_data = file_get_contents('https://github.com/timeline');
+    $xml_data = file_get_contents('http://demo.local/timeline.xml');
     $xml = simplexml_load_string($xml_data);
     
     // Loop through the XML elements and generate HTML for each entry

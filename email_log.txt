@@ -3,7 +3,6 @@ singhakallyan1@gmail.com
 asdasd@mail.com
 test2@mail.com
 ks@mail.com
-test123@mail.com
 
 Error recipients:
 
