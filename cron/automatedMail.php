@@ -40,18 +40,61 @@ $xml = simplexml_load_string($xml_data);
     <meta charset="UTF-8">
     <title>GitHub XML Feed</title>
     <style>
-    .entry {
-        border: 1px solid #ccc;
-        margin-bottom: 10px;
-        padding: 10px;
-    }
-    h2 {
-        margin-bottom: 5px;
-    }
-    p {
-        margin: 5px 0;
-    }
-    </style>
+
+    @import url(\'https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500&display=swap\');
+  *
+  {
+  font-family: \'Poppins\', sans-serif;
+  margin: 0;
+  padding:0;
+  }
+  body
+  {
+  background-color :#232428;
+  padding: .8rem;
+  color: white;
+  }
+  a
+  {
+  color: yellow;
+  }
+  
+      .card {
+          border: 1px solid #ccc;
+          margin: .8rem 0;
+          padding: 10px;
+          color: white;
+          display: flex;
+          flex-direction: column;
+          border-radius: 3px;
+      }
+      h2 {
+          
+          font-weight: 400;
+          font-size: 1rem;
+      }
+      p {
+          
+          display: inline;
+          font-size: .8rem;
+      }
+      span p:nth-child(2)
+      {
+      font-size: .7rem;
+      }
+  
+  .repolink
+  {
+  background-color: white;
+  padding : .2rem .7rem;
+  text-decoration: none;
+  width: fit-content;
+  color: black;
+  border-radius: 3px;
+  margin: 1rem 0 0 0;
+  }
+    
+      </style>
     </head>
     <body>';
     if(!empty($xml))
@@ -59,12 +102,16 @@ $xml = simplexml_load_string($xml_data);
         foreach ($xml->entry as $item) {
             $title = (string)$item->title;
             $author_name = (string)$item->author->name;
+            $url = (string) $item->link['href'];
+            $date = (string)$item->published;
             $media_url = (string)$item->children('media', true)->thumbnail['url'];
             
             // Append entry HTML to the email message
-            $message .= '<div class="entry">';
+            $message .= '<div class="card">';
             $message .= '<h2>Title: ' . $title . '</h2>';
-            $message .= '<p>Author: ' . $author_name . '</p>';
+            $message .= "<span><p>Published on </p> <p> {$date} </p></span>";
+            $message .= "<span><p>By</p> <p>{$author_name}</p></span>";
+            $message .=  "<a class=\"repolink\" href=\"{$url}\" _blank>Visit</a>";
             $message .= '</div>';
         }
     }
