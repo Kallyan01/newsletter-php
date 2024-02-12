@@ -1,8 +1,6 @@
 Successful recipients:
-singhakallyan1@gmail.com
-asdasd@mail.com
-test2@mail.com
-ks@mail.com
+singhakallyan@gmail.com
+test@mail.com
 
 Error recipients:
 

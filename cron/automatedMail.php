@@ -18,68 +18,75 @@ $result = $conn->query($sql);
 // Initialize arrays to store successful and error email recipients
 $successRecipients = [];
 $errorRecipients = [];
+ // Fetch and parse the XML content
+// $xml_data = file_get_contents('https://github.com/timeline');
+$xml_data = file_get_contents('http://demo.local/timeline.xml');
+$xml = simplexml_load_string($xml_data);
 
-if ($result->num_rows > 0) {
+
+
     $subject = "GitHub XML Feed";
     $headers = "From: cron@example.com\r\n"; // Ensure proper header formatting
     $headers .= "MIME-Version: 1.0\r\n"; // Set MIME version
     $headers .= "Content-Type: text/html; charset=UTF-8\r\n"; // Set content type to HTML
-    
-    // Start building the email message
-    $message = '<!DOCTYPE html>
+
+    class EmailTemplate{
+
+        public function generateEmailBody($email,$xml)
+        {
+            $message = '<!DOCTYPE html>
     <html lang="en">
     <head>
-        <meta charset="UTF-8">
-        <title>GitHub XML Feed</title>
-        <style>
-            .entry {
-                border: 1px solid #ccc;
-                margin-bottom: 10px;
-                padding: 10px;
-            }
-            h2 {
-                margin-bottom: 5px;
-            }
-            p {
-                margin: 5px 0;
-            }
-        </style>
+    <meta charset="UTF-8">
+    <title>GitHub XML Feed</title>
+    <style>
+    .entry {
+        border: 1px solid #ccc;
+        margin-bottom: 10px;
+        padding: 10px;
+    }
+    h2 {
+        margin-bottom: 5px;
+    }
+    p {
+        margin: 5px 0;
+    }
+    </style>
     </head>
     <body>';
-    
-    // Fetch and parse the XML content
-    // $xml_data = file_get_contents('https://github.com/timeline');
-    $xml_data = file_get_contents('http://demo.local/timeline.xml');
-    $xml = simplexml_load_string($xml_data);
-    
-    // Loop through the XML elements and generate HTML for each entry
-    foreach ($xml->entry as $item) {
-        $title = (string)$item->title;
-        $author_name = (string)$item->author->name;
-        $media_url = (string)$item->children('media', true)->thumbnail['url'];
-        
-        // Append entry HTML to the email message
-        $message .= '<div class="entry">';
-        $message .= '<h2>Title: ' . $title . '</h2>';
-        $message .= '<p>Author: ' . $author_name . '</p>';
-        $message .= '</div>';
+    if(!empty($xml))
+    {
+        foreach ($xml->entry as $item) {
+            $title = (string)$item->title;
+            $author_name = (string)$item->author->name;
+            $media_url = (string)$item->children('media', true)->thumbnail['url'];
+            
+            // Append entry HTML to the email message
+            $message .= '<div class="entry">';
+            $message .= '<h2>Title: ' . $title . '</h2>';
+            $message .= '<p>Author: ' . $author_name . '</p>';
+            $message .= '</div>';
+        }
     }
-    
-    // Add unsubscribe link
-    while ($row = $result->fetch_assoc()) {
-        $to = $row["email"];
-        $unsubscribe_link = "http://demo.local/unsubscribe.php?email=" . rawurlencode($to);
-        $message .= '<p>To unsubscribe, click <a href="' . $unsubscribe_link . '">here</a>.</p>';
-    }
-    
-    // Close HTML tags
-    $message .= '</body>
-    </html>';
 
+    $unsubscribe_link = "http://demo.local/unsubscribe.php?email=" . rawurlencode($email);
+    $message .= '<p>To unsubscribe, click <a href="' . $unsubscribe_link . '">here</a>.</p>
+    </body>
+    </html>';
+    return $message;
+        }
+    }
+ 
+
+   
+
+if ($result->num_rows > 0) {
     // Loop through each user and send email
     $result->data_seek(0); // Reset result pointer
     while ($row = $result->fetch_assoc()) {
         $to = $row["email"];
+        $genEmail = new EmailTemplate();
+        $message = $genEmail->generateEmailBody($to,$xml);
         // Send email
         if (mail($to, $subject, $message, $headers)) {
             echo "Email sent successfully to: " . $to . "<br>";
